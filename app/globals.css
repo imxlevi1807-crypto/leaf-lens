@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dark Luxury Emerald & Gold Theme */
+  --color-forest-950: #06150e;  /* Midnight emerald background */
+  --color-forest-900: #0b2217;  /* Deep card base */
+  --color-forest-800: #123323;  /* Elevated input surface */
+  --color-forest-700: #1d4a34;  /* Crisp dark borders */
+  --color-forest-600: #2c684a;  /* Active borders */
+  --color-moss-300: #9fe08b;    /* Luminous mint-green */
+  --color-moss-400: #22c55e;    /* Vibrant leaf green CTA */
+  --color-gold-400: #f5c842;    /* Crisp gilded gold */
+  --color-ivory: #ffffff;       /* Pure white text in dark mode */
+  --color-sage: #a1c7af;        /* Readable mint-sage subtext */
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --animate-scan: scan 2.6s ease-in-out infinite;
+
+  /* Ambient Multi-Tone Emerald + Warm Gold Radial Glows */
+  --bg-glows: 
+    radial-gradient(circle at 10% 12%, rgba(20, 68, 45, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 90% 18%, rgba(245, 200, 66, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(14, 52, 34, 0.8) 0%, transparent 50%),
+    radial-gradient(circle at 15% 85%, rgba(197, 155, 39, 0.08) 0%, transparent 45%),
+    #06150e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Light Botanical Cream & Gold Theme (High-Contrast Input Outlines) */
+[data-theme="light"] {
+  --color-forest-950: #fbf9f4;  /* Fine botanical ivory-cream paper */
+  --color-forest-900: #ffffff;  /* Pure white cards */
+  --color-forest-800: #f1f7ef;  /* Soft tinted input background */
+  --color-forest-700: #72966c;  /* Crisp, clearly defined botanical green border */
+  --color-forest-600: #547c4e;  /* Focus border */
+  --color-moss-300: #1b7a3e;    /* Deep crisp forest green */
+  --color-moss-400: #16a34a;    /* Crisp botanical green CTA */
+  --color-gold-400: #c99b24;    /* Vivid warm gold */
+  --color-ivory: #092114;       /* Deep obsidian-green text (15.6:1 contrast ratio) */
+  --color-sage: #456c52;        /* Legible placeholder & secondary text */
+
+  --bg-glows: 
+    radial-gradient(circle at 12% 10%, rgba(220, 240, 215, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 88% 18%, rgba(245, 230, 190, 0.35) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(210, 235, 205, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 15% 85%, rgba(240, 225, 180, 0.25) 0%, transparent 40%),
+    #fbf9f4;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes scan {
+  0%, 100% {
+    top: 4%;
+  }
+  50% {
+    top: 92%;
   }
 }
 
+.animate-scan {
+  animation: scan 2.4s ease-in-out infinite;
+}
+
+html {
+  background-color: var(--color-forest-950);
+  background-image: var(--bg-glows);
+  background-attachment: fixed;
+  color-scheme: dark light;
+  transition: background-color 0.3s ease;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: transparent;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+/* Add at the bottom of app/globals.css */
+
+/* Mobile App Native Feel */
+html, body {
+  overscroll-behavior-y: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+/* Prevent unwanted mobile text selection when tapping buttons */
+button, [role="button"] {
+  user-select: none;
+  -webkit-user-select: none;
 }
