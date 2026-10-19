@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0e2a1b" />
+      <stop offset="100%" stop-color="#06150e" />
+    </radialGradient>
+    
+    <!-- Laser Scan Line Glow -->
+    <filter id="laserGlow" x="-20%" y="-100%" width="140%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <linearGradient id="scanGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0" />
+      <stop offset="25%" stop-color="#4ade80" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#86efac" stop-opacity="1" />
+      <stop offset="75%" stop-color="#4ade80" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="leafGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#2a6645" />
+      <stop offset="100%" stop-color="#143c26" />
+    </linearGradient>
+  </defs>
+
+  <!-- Solid Dark Emerald Background -->
+  <rect width="512" height="512" rx="108" fill="url(#bgGlow)" />
+
+  <!-- 4 Viewfinder Corner Brackets -->
+  <g stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.9">
+    <!-- Top Left -->
+    <path d="M 44 80 L 44 56 A 12 12 0 0 1 56 44 L 80 44" />
+    <!-- Top Right -->
+    <path d="M 432 44 L 456 44 A 12 12 0 0 1 468 56 L 468 80" />
+    <!-- Bottom Left -->
+    <path d="M 44 432 L 44 456 A 12 12 0 0 0 56 468 L 80 468" />
+    <!-- Bottom Right -->
+    <path d="M 432 468 L 456 468 A 12 12 0 0 0 468 456 L 468 432" />
+  </g>
+
+  <!-- Concentric Circular Lens Rings -->
+  <!-- Outer Ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.85" />
+  <!-- Inner Ring -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.75" />
+  <!-- Shaded Lens Circle Base -->
+  <circle cx="256" cy="256" r="185" fill="#081d13" opacity="0.7" />
+
+  <!-- Leaf Shape (Centered & Scaled from LensGraphic) -->
+  <!-- Original path: M100 18C152 48 172 112 100 184 28 112 48 48 100 18Z in 200x200 box -->
+  <!-- Scaled to 1.6x and centered at (256, 256) -->
+  <g transform="translate(256, 256) scale(1.65) translate(-100, -101)">
+    <!-- Leaf Body -->
+    <path
+      d="M100 18 C152 48 172 112 100 184 C28 112 48 48 100 18 Z"
+      fill="url(#leafGrad)"
+      stroke="#34d399"
+      stroke-width="1.5"
+      stroke-opacity="0.5"
+    />
+
+    <!-- Leaf Veins -->
+    <g stroke="#86efac" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.65" fill="none">
+      <!-- Main Central Vein Stem -->
+      <path d="M100 30 V180" />
+      <!-- Side Veins -->
+      <path d="M100 70 L132 94" />
+      <path d="M100 70 L68 94" />
+      <path d="M100 102 L138 126" />
+      <path d="M100 102 L62 126" />
+      <path d="M100 134 L126 152" />
+      <path d="M100 134 L74 152" />
+    </g>
+
+    <!-- Blight / Characteristic Spots from LeafLens -->
+    <circle cx="122" cy="112" r="6" fill="#c9a66b" opacity="0.9" />
+    <circle cx="82" cy="100" r="3.5" fill="#c9a66b" opacity="0.75" />
+  </g>
+
+  <!-- Horizontal Laser Scan Line (No Text!) -->
+  <g filter="url(#laserGlow)">
+    <line x1="80" y1="185" x2="432" y2="185" stroke="url(#scanGradient)" stroke-width="3" />
+    <line x1="120" y1="185" x2="392" y2="185" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+  </g>
+</svg>
